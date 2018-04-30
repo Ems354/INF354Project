@@ -37,7 +37,7 @@ namespace GroupProject.Pages.Clients
             {
                 return NotFound();
             }
-           ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "ID");
+           ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "Name");
             return Page();
         }
 

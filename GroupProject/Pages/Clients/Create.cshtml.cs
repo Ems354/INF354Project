@@ -21,7 +21,7 @@ namespace GroupProject.Pages.Clients
 
         public IActionResult OnGet()
         {
-        ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "ID");
+        ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "Name");
             return Page();
         }
 

@@ -37,7 +37,7 @@ namespace GroupProject.Pages.Packages
             {
                 return NotFound();
             }
-           ViewData["ConnectionID"] = new SelectList(_context.Connections, "ID", "ID");
+           ViewData["ConnectionID"] = new SelectList(_context.Connections, "ID", "Name");
             return Page();
         }
 

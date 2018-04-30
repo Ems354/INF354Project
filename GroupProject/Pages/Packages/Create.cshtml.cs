@@ -21,7 +21,7 @@ namespace GroupProject.Pages.Packages
 
         public IActionResult OnGet()
         {
-        ViewData["ConnectionID"] = new SelectList(_context.Connections, "ID", "ID");
+        ViewData["ConnectionID"] = new SelectList(_context.Connections, "ID", "Name");
             return Page();
         }
 
