@@ -19,12 +19,26 @@ namespace GroupProject.Pages.Packages
             _context = context;
         }
 
+        public string CurrentFilter { get; set; }
+
         public IList<Package> Package { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            Package = await _context.Packages
-                .Include(p => p.Connection).ToListAsync();
+            CurrentFilter = searchString;
+
+            IQueryable<Package> packIQ = from t in _context.Packages
+                                         select t;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                packIQ = packIQ.Where(t => t.Name.ToUpper().Contains(searchString.ToUpper())
+                                      || t.Cap.Contains(searchString));
+            }
+
+            packIQ = packIQ.OrderBy(t => t.Name);
+
+            Package = await packIQ.AsNoTracking().ToListAsync();
         }
     }
 }
