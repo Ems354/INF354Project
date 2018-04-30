@@ -8,7 +8,9 @@ namespace GroupProject.Entity
         public int ID { get; set; }
         public string Name { get; set; }
         public string Cap { get; set; }
-        public int Type { get; set; }
+
+        public int ConnectionID { get; set; }
+        public Connection Connection { get; set; }
 
         public ICollection<Subscription> Subscriptions { get; set; }
     }

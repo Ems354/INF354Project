@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupProject.Data;
 using GroupProject.Entity;
 
-namespace GroupProject.Pages.Clients
+namespace GroupProject.Pages.Connections
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace GroupProject.Pages.Clients
         }
 
         [BindProperty]
-        public Client Client { get; set; }
+        public Connection Connection { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,10 +29,9 @@ namespace GroupProject.Pages.Clients
                 return NotFound();
             }
 
-            Client = await _context.Clients
-                .Include(c => c.Title).SingleOrDefaultAsync(m => m.ID == id);
+            Connection = await _context.Connections.SingleOrDefaultAsync(m => m.ID == id);
 
-            if (Client == null)
+            if (Connection == null)
             {
                 return NotFound();
             }
@@ -46,11 +45,11 @@ namespace GroupProject.Pages.Clients
                 return NotFound();
             }
 
-            Client = await _context.Clients.FindAsync(id);
+            Connection = await _context.Connections.FindAsync(id);
 
-            if (Client != null)
+            if (Connection != null)
             {
-                _context.Clients.Remove(Client);
+                _context.Connections.Remove(Connection);
                 await _context.SaveChangesAsync();
             }
 

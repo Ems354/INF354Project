@@ -23,7 +23,8 @@ namespace GroupProject.Pages.Packages
 
         public async Task OnGetAsync()
         {
-            Package = await _context.Packages.ToListAsync();
+            Package = await _context.Packages
+                .Include(p => p.Connection).ToListAsync();
         }
     }
 }

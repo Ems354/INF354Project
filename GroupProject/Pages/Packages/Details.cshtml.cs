@@ -28,7 +28,8 @@ namespace GroupProject.Pages.Packages
                 return NotFound();
             }
 
-            Package = await _context.Packages.SingleOrDefaultAsync(m => m.ID == id);
+            Package = await _context.Packages
+                .Include(p => p.Connection).SingleOrDefaultAsync(m => m.ID == id);
 
             if (Package == null)
             {

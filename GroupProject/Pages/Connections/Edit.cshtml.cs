@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupProject.Data;
 using GroupProject.Entity;
 
-namespace GroupProject.Pages.Packages
+namespace GroupProject.Pages.Connections
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace GroupProject.Pages.Packages
         }
 
         [BindProperty]
-        public Package Package { get; set; }
+        public Connection Connection { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,12 @@ namespace GroupProject.Pages.Packages
                 return NotFound();
             }
 
-            Package = await _context.Packages
-                .Include(p => p.Connection).SingleOrDefaultAsync(m => m.ID == id);
+            Connection = await _context.Connections.SingleOrDefaultAsync(m => m.ID == id);
 
-            if (Package == null)
+            if (Connection == null)
             {
                 return NotFound();
             }
-           ViewData["ConnectionID"] = new SelectList(_context.Connections, "ID", "ID");
             return Page();
         }
 
@@ -48,7 +46,7 @@ namespace GroupProject.Pages.Packages
                 return Page();
             }
 
-            _context.Attach(Package).State = EntityState.Modified;
+            _context.Attach(Connection).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +54,7 @@ namespace GroupProject.Pages.Packages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PackageExists(Package.ID))
+                if (!ConnectionExists(Connection.ID))
                 {
                     return NotFound();
                 }
@@ -69,9 +67,9 @@ namespace GroupProject.Pages.Packages
             return RedirectToPage("./Index");
         }
 
-        private bool PackageExists(int id)
+        private bool ConnectionExists(int id)
         {
-            return _context.Packages.Any(e => e.ID == id);
+            return _context.Connections.Any(e => e.ID == id);
         }
     }
 }

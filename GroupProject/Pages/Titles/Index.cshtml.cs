@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupProject.Data;
 using GroupProject.Entity;
 
-namespace GroupProject.Pages.Clients
+namespace GroupProject.Pages.Titles
 {
     public class IndexModel : PageModel
     {
@@ -19,12 +19,11 @@ namespace GroupProject.Pages.Clients
             _context = context;
         }
 
-        public IList<Client> Client { get;set; }
+        public IList<Title> Title { get;set; }
 
         public async Task OnGetAsync()
         {
-            Client = await _context.Clients
-                .Include(c => c.Title).ToListAsync();
+            Title = await _context.Titles.ToListAsync();
         }
     }
 }

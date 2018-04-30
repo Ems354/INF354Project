@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using GroupProject.Data;
 using GroupProject.Entity;
 
-namespace GroupProject.Pages.Clients
+namespace GroupProject.Pages.Titles
 {
     public class CreateModel : PageModel
     {
@@ -21,12 +21,11 @@ namespace GroupProject.Pages.Clients
 
         public IActionResult OnGet()
         {
-        ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "ID");
             return Page();
         }
 
         [BindProperty]
-        public Client Client { get; set; }
+        public Title Title { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -35,7 +34,7 @@ namespace GroupProject.Pages.Clients
                 return Page();
             }
 
-            _context.Clients.Add(Client);
+            _context.Titles.Add(Title);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
