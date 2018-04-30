@@ -27,8 +27,8 @@ namespace GroupProject.Pages.Clients
         {
             CurrentFilter = searchString;
 
-            IQueryable<Client> clIQ = from c in _context.Clients
-                                      select c;
+            var clients = _context.Clients.Include(c => c.Title);
+            IQueryable<Client> clIQ = from c in clients select c;
 
             if (!string.IsNullOrEmpty(searchString))
             {

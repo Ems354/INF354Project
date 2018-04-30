@@ -27,8 +27,8 @@ namespace GroupProject.Pages.Packages
         {
             CurrentFilter = searchString;
 
-            IQueryable<Package> packIQ = from t in _context.Packages
-                                         select t;
+            var packages = _context.Packages.Include(p => p.Connection);
+            IQueryable<Package> packIQ = from t in packages select t;
 
             if (!string.IsNullOrEmpty(searchString))
             {
