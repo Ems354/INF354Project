@@ -19,26 +19,11 @@ namespace GroupProject.Pages.Clients
             _context = context;
         }
 
-        public string CurrentFilter { get; set; }
-
         public IList<Client> Client { get;set; }
 
-        public async Task OnGetAsync(string searchString)
+        public async Task OnGetAsync()
         {
-            CurrentFilter = searchString;
-
-            IQueryable<Client> clIQ = from c in _context.Clients
-                                         select c;
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                clIQ = clIQ.Where(c => c.Name.ToUpper().Contains(searchString.ToUpper())
-                                      || c.Surname.ToUpper().Contains(searchString.ToUpper()));
-            }
-
-            clIQ = clIQ.OrderBy(t => t.Name);
-
-            Client = await clIQ.AsNoTracking().ToListAsync();
+            Client = await _context.Clients.ToListAsync();
         }
     }
 }
