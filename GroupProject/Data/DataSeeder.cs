@@ -62,23 +62,23 @@ namespace GroupProject.Data
             {
                 new Package {
                     Name = "ADSL 2Mb Uncapped",
-                    Cap = "",
-                    Shaped = false
+                    Cap = "100",
+                    Type = 1
                 },
                 new Package {
                     Name = "ADSL 4Mb Uncapped",
-                    Cap = "",
-                    Shaped = false
+                    Cap = "100",
+                    Type = 1
                 },
                 new Package {
                     Name = "ADSL 10Mb Uncapped",
-                    Cap = "",
-                    Shaped = false
+                    Cap = "100",
+                    Type = 1
                 },
                 new Package {
                     Name = "ADSL 20Mb Uncapped",
-                    Cap = "",
-                    Shaped = false
+                    Cap = "100",
+                    Type = 1
                 },
             };
             foreach (Package p in packages)

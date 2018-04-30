@@ -14,19 +14,12 @@
   <ItemGroup>
     <Folder Include="Entity\" />
     <Folder Include="Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Pages\Packages\Create.cshtml.cs" />
-    <Compile Remove="Pages\Packages\Delete.cshtml.cs" />
-    <Compile Remove="Pages\Subscriptions\Create.cshtml.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Pages\Packages\Create.cshtml" />
-    <None Remove="Pages\Packages\Details.cshtml" />
-    <None Remove="Pages\Packages\Delete.cshtml" />
-    <None Remove="Pages\Packages\Create.cshtml" />
+    <Folder Include="Pages\Packages\" />
+    <Folder Include="Pages\Subscriptions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Pages\Packages\Create.cshtml" />
+    <Content Remove="Pages\Packages\Details.cshtml" />
+    <Content Remove="Pages\Packages\Edit.cshtml" />
   </ItemGroup>
 </Project>
