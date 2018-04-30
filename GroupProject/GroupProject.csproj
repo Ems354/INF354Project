@@ -14,5 +14,12 @@
   <ItemGroup>
     <Folder Include="Entity\" />
     <Folder Include="Data\" />
+    <Folder Include="Pages\Packages\" />
+    <Folder Include="Pages\Subscriptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Pages\Packages\Create.cshtml" />
+    <Content Remove="Pages\Packages\Details.cshtml" />
+    <Content Remove="Pages\Packages\Edit.cshtml" />
   </ItemGroup>
 </Project>

@@ -9,7 +9,6 @@ namespace GroupProject.Entity
         public string Name { get; set; }
         public string Cap { get; set; }
         public int Type { get; set; }
-        public bool Shaped { get; set; }
 
         public ICollection<Subscription> Subscriptions { get; set; }
     }
