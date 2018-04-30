@@ -22,4 +22,7 @@
     <Content Remove="Pages\Packages\Details.cshtml" />
     <Content Remove="Pages\Packages\Edit.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="PagesPackages\Create.cshtml" />
+  </ItemGroup>
 </Project>

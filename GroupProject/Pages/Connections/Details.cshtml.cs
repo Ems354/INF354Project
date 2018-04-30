@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupProject.Data;
 using GroupProject.Entity;
 
-namespace GroupProject.Pages.Clients
+namespace GroupProject.Pages.Connections
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace GroupProject.Pages.Clients
             _context = context;
         }
 
-        public Client Client { get; set; }
+        public Connection Connection { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,9 @@ namespace GroupProject.Pages.Clients
                 return NotFound();
             }
 
-            Client = await _context.Clients
-                .Include(c => c.Title).SingleOrDefaultAsync(m => m.ID == id);
+            Connection = await _context.Connections.SingleOrDefaultAsync(m => m.ID == id);
 
-            if (Client == null)
+            if (Connection == null)
             {
                 return NotFound();
             }

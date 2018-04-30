@@ -30,12 +30,14 @@ namespace GroupProject.Pages.Clients
                 return NotFound();
             }
 
-            Client = await _context.Clients.SingleOrDefaultAsync(m => m.ID == id);
+            Client = await _context.Clients
+                .Include(c => c.Title).SingleOrDefaultAsync(m => m.ID == id);
 
             if (Client == null)
             {
                 return NotFound();
             }
+           ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "ID");
             return Page();
         }
 
