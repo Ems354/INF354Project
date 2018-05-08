@@ -28,8 +28,7 @@ namespace GroupProject.Pages.Subscriptions
             })
             .ToList();
 
-            ViewData["ClientID"] = new SelectList(clients, "ID", "FullName");
-            ViewData["PackageID"] = new SelectList(_context.Packages, "ID", "Name");
+            var id = this.Request.Query["id"].ToString();              ViewData["PackageID"] = new SelectList(_context.Packages, "ID", "Name");             ViewData["ClientID"] = new SelectList(clients, "ID", "FullName", id); 
             return Page();
         }
 
