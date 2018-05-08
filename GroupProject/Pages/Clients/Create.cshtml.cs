@@ -21,7 +21,7 @@ namespace GroupProject.Pages.Clients
 
         public IActionResult OnGet()
         {
-        ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "Name");
+            ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "Name");
             return Page();
         }
 
@@ -35,10 +35,25 @@ namespace GroupProject.Pages.Clients
                 return Page();
             }
 
-            _context.Clients.Add(Client);
-            await _context.SaveChangesAsync();
+            //check if user exists
+            var exists = _context.Clients.Where(c => c.Number == Client.Number && c.Name.ToUpper() == Client.Name.ToUpper() && c.Surname.ToUpper() == Client.Surname.ToUpper());
 
-            return RedirectToPage("./Index");
+            if (exists.Count() > 0)
+            {
+                //client exits
+                ModelState.AddModelError("Error", "User already exists");
+                ViewData["TitleID"] = new SelectList(_context.Titles, "ID", "Name");
+                return Page();
+            }
+            else
+            {
+                
+                _context.Clients.Add(Client);
+                
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("./Index");
+            }
         }
     }
 }
