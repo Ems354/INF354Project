@@ -38,8 +38,17 @@ namespace GroupProject.Pages.Subscriptions
             {
                 return NotFound();
             }
-           ViewData["ClientID"] = new SelectList(_context.Clients, "ID", "ID");
-           ViewData["PackageID"] = new SelectList(_context.Packages, "ID", "ID");
+
+            var clients = _context.Clients.Select(client => new
+            {
+                ID = client.ID,
+                FullName = $"{client.Name} {client.Surname}"
+            })
+            .ToList();
+
+
+            ViewData["ClientID"] = new SelectList(clients, "ID", "FullName");
+            ViewData["PackageID"] = new SelectList(_context.Packages, "ID", "Name");
             return Page();
         }
 
