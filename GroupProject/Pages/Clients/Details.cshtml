@@ -33,10 +33,39 @@
             @Html.DisplayNameFor(model => model.Client.Title)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Client.Title.ID)
+            @Html.DisplayFor(model => model.Client.Title.ID) <!-- TODO title id is shown not title name -->
         </dd>
     </dl>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subscription[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subscription[0].Package)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Subscription)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Package.Name)
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.PackageID">Show Clients with this package</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Client.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>

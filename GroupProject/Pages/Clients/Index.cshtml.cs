@@ -25,6 +25,7 @@ namespace GroupProject.Pages.Clients
 
         public async Task OnGetAsync(string searchString)
         {
+            ViewData["SearchByPackage"] = false;
             CurrentFilter = searchString;
 
             var clients = _context.Clients.Include(c => c.Title);
@@ -40,7 +41,28 @@ namespace GroupProject.Pages.Clients
 
             clIQ = clIQ.OrderBy(t => t.Name);
 
-            Client = await clIQ.AsNoTracking().ToListAsync();
+            var id = this.Request.Query["id"].ToString();
+
+            if(id != "")
+            {
+                ViewData["SearchByPackage"] = true;
+                ViewData["PackageName"] = " Package ID " + id;// TODO get package name instead of Id
+                
+                var query = clients
+                       .Join(_context.Subscriptions,
+                          client => client.ID,
+                          subscription => subscription.ClientID,
+                          (client, subscription) => new { Client = client, Subscription = subscription })
+                       .Where(clientSubscription => clientSubscription.Subscription.PackageID == int.Parse(id))
+                       .Select(c => c.Client);
+
+                Client = await query.AsNoTracking().ToListAsync();
+
+            }
+            else
+            {
+                Client = await clIQ.AsNoTracking().ToListAsync();
+            }
         }
     }
 }

@@ -20,6 +20,8 @@ namespace GroupProject.Pages.Clients
         }
 
         public Client Client { get; set; }
+        public IList<Subscription> Subscription { get; set; }
+
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,6 +32,11 @@ namespace GroupProject.Pages.Clients
 
             Client = await _context.Clients
                 .Include(c => c.Title).SingleOrDefaultAsync(m => m.ID == id);
+
+            Subscription = await _context.Subscriptions
+                .Where(s => s.ClientID == Client.ID)
+                .Include(s => s.Client)
+                .Include(s => s.Package).ToListAsync();
 
             if (Client == null)
             {

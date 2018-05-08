@@ -7,6 +7,13 @@
 
 <h2>Index</h2>
 
+@if (ViewBag.SearchByPackage)
+{
+    <div class="alert alert-">
+        <strong>Showing all users with @ViewBag.PackageName</strong>
+    </div>
+}
+
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -25,15 +32,15 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Client[0].Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Client[0].Surname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Client[0].Number)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Number)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Client[0].Title)
             </th>
@@ -41,7 +48,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Client) {
+        @foreach (var item in Model.Client) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -62,6 +69,6 @@
                 <a asp-page="./../Subscriptions/Create" asp-route-id="@item.ID">Package</a>
             </td>
         </tr>
-}
+                }
     </tbody>
 </table>

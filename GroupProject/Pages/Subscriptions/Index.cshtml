@@ -13,9 +13,9 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Subscription[0].Date)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subscription[0].Date)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Subscription[0].Client)
             </th>
@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Subscription) {
+        @foreach (var item in Model.Subscription) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -43,6 +43,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.SubscriptionID">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
