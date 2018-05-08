@@ -32,8 +32,9 @@ namespace GroupProject.Pages.Packages
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                packIQ = packIQ.Where(t => t.Name.ToUpper().Contains(searchString.ToUpper())
-                                      || t.Cap.Contains(searchString));
+                packIQ = packIQ.Where(t => t.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                      t.Cap.ToUpper().Contains(searchString.ToUpper()) || 
+                                      t.Connection.Name.ToUpper().Contains(searchString.ToUpper()));
             }
 
             packIQ = packIQ.OrderBy(t => t.Name);

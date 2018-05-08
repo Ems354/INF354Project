@@ -32,8 +32,10 @@ namespace GroupProject.Pages.Clients
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                clIQ = clIQ.Where(c => c.Name.ToUpper().Contains(searchString.ToUpper())
-                                      || c.Surname.ToUpper().Contains(searchString.ToUpper()));
+                clIQ = clIQ.Where(c => c.Name.ToUpper().Contains(searchString.ToUpper()) || 
+                                  c.Surname.ToUpper().Contains(searchString.ToUpper()) || 
+                                  c.Number.ToUpper().Contains(searchString.ToUpper()) || 
+                                  c.Title.Name.ToUpper().Contains(searchString.ToUpper()));
             }
 
             clIQ = clIQ.OrderBy(t => t.Name);
