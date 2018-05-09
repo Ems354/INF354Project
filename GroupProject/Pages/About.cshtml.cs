@@ -12,7 +12,7 @@ namespace GroupProject.Pages
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            Message = "NF354 - ISP Mini-Group Project";
         }
     }
 }
